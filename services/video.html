@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video creation — Wait What Shorts</title>
+<meta name="description" content="Custom Shorts and social video from Wait What — calm voice, quick reveal, built to stop the scroll.">
+<link rel="stylesheet" href="../style.css"></head>
+<body>
+<audio id="ww-outro" src="../outro-jingle.mp3" preload="auto"></audio>
+<header class="hero compact">
+  <a class="back" href="../">← Wait What</a>
+  <h1>Video creation</h1>
+  <p class="tag">Shorts that make people look twice</p>
+</header>
+<main class="page">
+  <p class="lead">We build short-form video the same way Wait What does every day: a clear hook, a calm voice, and a reveal that flips what you thought you saw — under a minute, ready for YouTube, TikTok, Instagram, or your own channels.</p>
+  <h2>How we can help</h2>
+  <ul class="bullets">
+    <li>Custom optical-illusion or “wait… what?” Shorts for your brand, venue, or campaign</li>
+    <li>Script, voice, visuals, and caption-ready cuts from one brief</li>
+    <li>Series packs when you want a daily or weekly drop, not a one-off</li>
+    <li>Light social packaging — titles, hooks, and posting notes that match the cut</li>
+  </ul>
+  <p>Tell us what you’re launching and where it needs to land. We’ll reply from <a href="mailto:hello@waitwhatshorts.com">hello@waitwhatshorts.com</a> with next steps.</p>
+
+  <h2>Request a project</h2>
+  <p>Fill this out and we’ll open a ready-to-send email to us. Edit anything before you hit send.</p>
+  <form class="form" id="video-form" novalidate>
+    <label>Your name
+      <input name="name" type="text" autocomplete="name" required placeholder="Alex Rivera">
+    </label>
+    <label>Your email
+      <input name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+    </label>
+    <label>Company / brand <span style="opacity:.6">(optional)</span>
+      <input name="company" type="text" autocomplete="organization" placeholder="Museum of Illusions Dallas">
+    </label>
+    <label>What do you need?
+      <textarea name="brief" required placeholder="A 5-video Shorts series for our spring exhibit, posted on TikTok + YouTube…"></textarea>
+    </label>
+    <label>Timeline <span style="opacity:.6">(optional)</span>
+      <input name="timeline" type="text" placeholder="Need first cut by Nov 20">
+    </label>
+    <button class="btn full" type="submit">Open email to hello@</button>
+    <p class="note">Opens your email app with the details filled in. Nothing is stored on this page.</p>
+  </form>
+
+  <p class="or">Prefer to write it yourself?</p>
+  <p style="text-align:center"><a class="btn ghost" href="mailto:hello@waitwhatshorts.com?subject=Video%20creation%20inquiry">Email hello@waitwhatshorts.com</a></p>
+</main>
+<footer>© Wait What Shorts · waitwhatshorts.com</footer>
+<script src="../site.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('video-form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(form);
+    var name = (d.get('name') || '').toString().trim();
+    var email = (d.get('email') || '').toString().trim();
+    var company = (d.get('company') || '').toString().trim();
+    var brief = (d.get('brief') || '').toString().trim();
+    var timeline = (d.get('timeline') || '').toString().trim();
+    if (!name || !email || !brief) {
+      form.reportValidity();
+      return;
+    }
+    var lines = [
+      'Name: ' + name,
+      'Email: ' + email,
+      company ? 'Company / brand: ' + company : null,
+      timeline ? 'Timeline: ' + timeline : null,
+      '',
+      'Project brief:',
+      brief
+    ].filter(function (x) { return x !== null; });
+    var subject = 'Video creation inquiry' + (company ? ' — ' + company : ' — ' + name);
+    var href = 'mailto:hello@waitwhatshorts.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(lines.join('\n'));
+    window.location.href = href;
+  });
+})();
+</script>
+</body></html>
