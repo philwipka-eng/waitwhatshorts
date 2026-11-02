@@ -4,6 +4,7 @@
 <meta name="description" content="Daily optical-illusion Shorts with a calm voice and a quick reveal.">
 <link rel="stylesheet" href="style.css"></head>
 <body>
+<audio id="ww-outro" src="outro-jingle.mp3" preload="auto"></audio>
 <header class="hero"><h1>Wait What</h1><p class="tag">Shorts that make you look twice</p><a class="btn" href="#watch">Watch now</a></header>
 <section><h2>What it is</h2><p>Wait What Shorts is a daily dose of optical illusions — a calm voice walks you through what you think you see, then a quick reveal flips it. Under a minute, every day, guaranteed double-take.</p></section>
 <section id="watch"><h2>Watch</h2><div class="links">
@@ -11,4 +12,32 @@
 <a class="btn" href="https://www.tiktok.com/@waitwhatnowt6d" target="_blank" rel="noopener">TikTok</a></div></section>
 <section id="contact"><h2>Contact</h2><p>Collabs, press, or a great illusion to share?</p><p><a href="mailto:hello@waitwhatshorts.com">hello@waitwhatshorts.com</a></p></section>
 <footer>© Wait What Shorts · waitwhatshorts.com</footer>
+<script>
+(function () {
+  var audio = document.getElementById('ww-outro');
+  function playOutro() {
+    try {
+      audio.currentTime = 0;
+      var p = audio.play();
+      if (p && p.catch) p.catch(function () {});
+    } catch (e) {}
+  }
+  // Try on load (browsers often block until a gesture)
+  playOutro();
+  // First gesture unlocks + plays if load was blocked
+  var unlocked = false;
+  function unlockAndPlay() {
+    if (!unlocked) {
+      unlocked = true;
+      playOutro();
+    }
+  }
+  document.addEventListener('pointerdown', unlockAndPlay, { once: true, passive: true });
+  document.addEventListener('keydown', unlockAndPlay, { once: true });
+  // Every button click
+  document.querySelectorAll('.btn').forEach(function (btn) {
+    btn.addEventListener('click', playOutro);
+  });
+})();
+</script>
 </body></html>
